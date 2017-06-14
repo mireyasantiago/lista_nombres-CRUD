@@ -16,7 +16,11 @@ var cargarTareas = function () {
 }
 
 var crearTarea = function (tarea) {
-  var nombre = tarea.name;
+
+  var plantillaFinal="";
+  plantillaFinal += plantilla.replace("__name__", tarea.name).replace("__status__", tarea.status[0]);
+  $tasksList.html(plantillaFinal);//poner en donde se va imprimir
+  /*var nombre = tarea.name;
   var estado = tarea.status[0];
   // creamos la fila
   var $tr = $("<tr />");
@@ -30,7 +34,7 @@ var crearTarea = function (tarea) {
   $tr.append($nombreTd);
   $tr.append($estadoTd);
   // agregamos filas a la tabla
-  $tasksList.append($tr);
+  $tasksList.append($tr);*/
 };
 
 var agregarTarea = function (e) {
@@ -43,6 +47,25 @@ var agregarTarea = function (e) {
     $("#myModal").modal("hide");
   });
 };
+
+
+
+
+var plantilla= '<tr>'+
+      '<td>__name__</td>' +
+      '<td>__status__</td>' +
+      '<td>' +
+        '<a class="glyphicon glyphicon-plus" aria-hidden="true"></a>' +
+        '<a class="glyphicon glyphicon-remove" aria-hidden="true"></a>' +
+        '<a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>' +
+      '</td>' +
+    '</tr>';
+
+
+
+
+
+
 
 $(document).ready(cargarPagina);
 /// hacer una plantilla para la tabla y sacarla del dom
