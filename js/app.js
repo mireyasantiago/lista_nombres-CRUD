@@ -7,6 +7,9 @@ var $tasksList = $("#tasks-list");// se pone como variable global para poder acc
 var cargarPagina = function () {
   cargarTareas();
   $("#add-form").submit(agregarTarea);
+    $(document).on('click', '.accion', eliminarTarea);// cuando se aplica despues de realizarse
+
+
 };
 
 var cargarTareas = function () {
@@ -18,8 +21,10 @@ var cargarTareas = function () {
 var crearTarea = function (tarea) {
 
   var plantillaFinal="";
-  plantillaFinal += plantilla.replace("__name__", tarea.name).replace("__status__", tarea.status[0]);
-  $tasksList.html(plantillaFinal);//poner en donde se va imprimir
+  plantillaFinal += plantilla.replace("__name__", tarea.name).replace("__status__", tarea.status[0]).replace('__data__', tarea._id);
+  $tasksList.append(plantillaFinal);//poner en donde se va imprimir con append para que aparesca el ultimo por que con html solo muestra el ultimo
+
+
   /*var nombre = tarea.name;
   var estado = tarea.status[0];
   // creamos la fila
@@ -35,7 +40,20 @@ var crearTarea = function (tarea) {
   $tr.append($estadoTd);
   // agregamos filas a la tabla
   $tasksList.append($tr);*/
+
+
+  //console.log(tarea);
 };
+
+var plantilla= '<tr>'+
+      '<td>__name__</td>' +
+      '<td>__status__</td>' +
+      '<td>' +
+        '<a class="glyphicon glyphicon-plus " aria-hidden="true" ></a>' +
+        '<a class="glyphicon glyphicon-remove accion" data-id=__data__ aria-hidden="true"></a>' +
+        '<a class="glyphicon glyphicon-pencil " aria-hidden="true"></a>' +
+      '</td>' +
+    '</tr>';
 
 var agregarTarea = function (e) {
   e.preventDefault();
@@ -49,26 +67,15 @@ var agregarTarea = function (e) {
 };
 
 
-
-
-var plantilla= '<tr>'+
-      '<td>__name__</td>' +
-      '<td>__status__</td>' +
-      '<td>' +
-        '<a class="glyphicon glyphicon-plus" aria-hidden="true"></a>' +
-        '<a class="glyphicon glyphicon-remove" aria-hidden="true"></a>' +
-        '<a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>' +
-      '</td>' +
-    '</tr>';
-
-
-
-
-
-
+var eliminarTarea= function(){
+  $.ajax({  //o con jQuery.ajax
+    url: api.url + $(this).data("id"),
+    type: "DELETE",// para eliminar
+    success: function (mensaje){
+      $tasksList.html("");// para limpiar el contenedor
+      cargarTareas();
+    }
+  })
+}
 
 $(document).ready(cargarPagina);
-/// hacer una plantilla para la tabla y sacarla del dom
-
-
-// para eliminar con disply none y remove

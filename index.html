@@ -31,11 +31,9 @@
           <a class="glyphicon glyphicon-remove" aria-hidden="true"></a>
           <a class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
         </td>
-      </tr>--> 
+      </tr>-->
     </tbody>
   </table>
-
-
 
   <!-- area del Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -47,10 +45,10 @@
             <h4 class="modal-title" id="myModalLabel">Nueva tarea</h4>
           </div>
           <div class="modal-body">
-              <div class="form-group">
-                <label for="nombre-tarea">Nombre tarea:</label>
-                <input type="text" class="form-control" id="nombre-tarea" placeholder="Tarea">
-              </div>
+            <div class="form-group">
+              <label for="nombre-tarea">Nombre tarea:</label>
+              <input type="text" class="form-control" id="nombre-tarea" placeholder="Tarea">
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -61,6 +59,34 @@
     </div>
   </div>
 
+  <!-- Area de modal de detalles -->
+
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"> Detalles de tarea :</h4>
+        </div>
+        <div class="modal-body">
+          <p>Nombre: <span id="nombreTarea"></span></p>
+          <p>Fecha: <span id="fechaCreacion"></span></p>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+    Launch demo modal
+  </button>
 
 
   <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
