@@ -1,3 +1,5 @@
+(function(){
+
 var api = {
   url: 'https://lab-api-test.herokuapp.com/tasks/'
 };
@@ -7,7 +9,7 @@ var $tasksList = $("#tasks-list");// se pone como variable global para poder acc
 var cargarPagina = function () {
   cargarTareas();
   $("#add-form").submit(agregarTarea);
-    $(document).on('click', '.accion', eliminarTarea);// cuando se aplica despues de realizarse
+  $(document).on('click', '.accion', eliminarTarea);// cuando se aplica despues de realizarse
 
 
 };
@@ -46,14 +48,14 @@ var crearTarea = function (tarea) {
 };
 
 var plantilla= '<tr>'+
-      '<td>__name__</td>' +
-      '<td>__status__</td>' +
-      '<td>' +
-        '<a class="glyphicon glyphicon-plus " aria-hidden="true" ></a>' +
-        '<a class="glyphicon glyphicon-remove accion" data-id=__data__ aria-hidden="true"></a>' +
-        '<a class="glyphicon glyphicon-pencil " aria-hidden="true"></a>' +
-      '</td>' +
-    '</tr>';
+'<td>__name__</td>' +
+'<td>__status__</td>' +
+'<td>' +
+'<a class="glyphicon glyphicon-plus " aria-hidden="true" ></a>' +
+'<a class="glyphicon glyphicon-remove accion" data-id=__data__ aria-hidden="true"></a>' +
+'<a class="glyphicon glyphicon-pencil " aria-hidden="true"></a>' +
+'</td>' +
+'</tr>';
 
 var agregarTarea = function (e) {
   e.preventDefault();
@@ -77,5 +79,11 @@ var eliminarTarea= function(){
     }
   })
 }
+/*
+var mostrarDetalles= function(){
+
+}*/
 
 $(document).ready(cargarPagina);
+
+})();
